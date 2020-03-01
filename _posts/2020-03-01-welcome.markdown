@@ -1,0 +1,11 @@
+---
+layout: post
+title:  "Welcome!"
+date:   2020-03-01 20:00:00 +0530
+categories: update introduction
+---
+This is my blog to collect stuff that I've learnt and share with you. This previously used to be hosted at [Art of Problem Solving](https://artofproblemsolving.com/community/c1053926) but I wanted more freedom in how I could style this page.
+
+Anyways, I hope someone finds this useful!
+
+

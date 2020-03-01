@@ -8,6 +8,8 @@ This is my math blog to collect and share with you stuff that I've learnt.
 
 This previously used to be hosted at [Art of Problem Solving](https://artofproblemsolving.com/community/c1053926) but I wanted more freedom in how I could style this page.
 
+Much credit to [Mathematics and Machines](https://www.jamiddleton.com/jekyll/update/2019/03/31/jekyll-mathjax-cmuserif-mlblog.html) for instructions on how to get this working.
+
 Anyways, I hope someone finds this useful!
 
 

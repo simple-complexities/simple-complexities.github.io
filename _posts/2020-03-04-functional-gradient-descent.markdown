@@ -264,4 +264,8 @@ where $$DE(f) \in H_K$$, which is what we had to show!
 
 ### Conclusion
 We have seen:
-* Whait means to do functional gradient descent. 
+* Why functional gradient descent can be useful,
+* What it means to do functional gradient descent, and, 
+* How we can do functional gradient descent.  
+
+and that's all I have for today.

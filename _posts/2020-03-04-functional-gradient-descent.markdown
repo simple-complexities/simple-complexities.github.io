@@ -30,12 +30,19 @@ where $$\lVert f \rVert ^2$$ again serves as a regularization term, and we have 
 \\]
 where we move around in the space of functions, not weights!
 
-Turns out, this is completely possible! And goes by the name of 'functional' gradient descent, or gradient descent in function space. But what does this mean?
+Turns out, this is completely possible! And goes by the name of 'functional' gradient descent, or gradient descent in function space. 
 
+A question that one may have is: why do this in the first place? Every function can be parametrized, and we can do 'ordinary' gradient descent in the space of parameters, instead?
+
+The answer is: yes, you always can! In general, you can parametrize any function in a number of ways, each parametrization gives rise to different steps (and different functions at each step) in gradient descent.
+
+The advantage is that some loss functions that are non-convex when parametrized, can be convex in the function space: this means functional gradient descent can actually converge to global minima, when 'ordinary' gradient descent could possibly get stuck at local minima or saddle points.
+
+So, what does functional gradient descent mean?
 
 ### Functionals
 A functional is a function defined over functions, returning a real value.  
-**Examples:**
+Examples:
 * The evaluation functional
 \\[
     E_x(f) = f(x)
@@ -98,13 +105,13 @@ Try to derive what the associated feature map is, for each of these kernels!
 &nbsp;
 
 We can now define a reproducing kernel Hilbert space or a 'RKHS'.  
-A **reproducing kernel Hilbert space**, obtained on fixing a kernel $$K$$, is a space of functions where every function $$f$$ is some linear combination of the kernel $$K$$ evaluated at some 'centers' $$x_C$$:
+A *reproducing kernel Hilbert space*, obtained on fixing a kernel $$K$$, is a space of functions where every function $$f$$ is some linear combination of the kernel $$K$$ evaluated at some 'centers' $$x_C$$:
 \\[
-    f(x) = \sum_{i = 1}^n \alpha_i K(x, x_{Ci}) 
+    f(x) = \sum_{i = 1}^n \alpha_{f_i} K(x, x_{Cf_i}) 
 \\]
 or, ignoring the argument $$x$$:
 \\[
-    f = \sum_{i = 1}^n \alpha_i K(\cdot, x_{Ci}) 
+    f = \sum_{i = 1}^n \alpha_{f_i} K(\cdot, x_{Cf_i}) 
 \\]
 For a kernel $$K$$ will denote the associated reproducing kernel Hilbert space by $$H_K$$.  
 From the definition above, every $$f \in H_K$$ is completely determined by the coefficients $$\alpha_f$$ and the centers $$x_{Cf}$$. Note that the number of centers ($$ = $$ dimension of $$\alpha_f$$) can vary between functions.
@@ -181,7 +188,7 @@ Note how similar this is to the derivative $$2x$$ of the function $$x \to \lvert
 Very fortunately, we also have the chain rule!
 As discussed before, if $$E$$ is a functional and $$g: \mathbb{R} \to \mathbb{R}$$ is differentiable, then $$g(E)$$ is also a functional, with derivative:
 \\[
-    D(g(E))(f) = g'(E(f)) DE(f).
+    D(g(E))(f) = g'(E(f)) \ DE(f).
 \\]
 
 ---
@@ -194,7 +201,10 @@ The individual terms in the first sum term is a composition of
 \\]
 Thus, each of these terms has derivative:
 \\[
-    D(g_i({x_i}))(f) = -2 (y_i - E_{x_i}(f)) \cdot DE_{x_i}(f) = -2 (y_i - f(x_i)) \cdot K(x_i, \cdot).
+    \begin{aligned}
+    D(g_i({x_i}))(f) &= -2 (y_i - E_{x_i}(f)) \cdot DE_{x_i}(f) \newline
+                     &= -2 (y_i - f(x_i)) \cdot K(x_i, \cdot).
+    \end{aligned}
 \\]
 The second term has derivative $$2f$$, as derived above.
 Thus, the derivative $$DL(f)$$ is given by:
@@ -253,8 +263,5 @@ This means, we can write:
 where $$DE(f) \in H_K$$, which is what we had to show!
 
 ### Conclusion
-We have seen what it means to do functional gradient descent. One last question that one may have is: why do this in the first place? Every function can be parametrized, and we can do 'ordinary' gradient descent in the space of parameters, instead?
-
-The answer is: yes, you always can! In general, you can parametrize any function in a number of ways, each parametrization gives rise to different steps (and different functions at each step) in gradient descent.
-
-The advantage is that some loss functions that are non-convex when parametrized can be convex in the function space: this means functional gradient descent can actually converge to global minima, when 'ordinary' gradient descent could possibly get stuck.
+We have seen:
+* Whait means to do functional gradient descent. 

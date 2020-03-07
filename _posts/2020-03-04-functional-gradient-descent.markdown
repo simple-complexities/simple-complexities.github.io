@@ -18,7 +18,7 @@ An example of a loss $$L$$ is:
 \\[
     L(w) = \sum_{i=1}^n(y_i - w^Tx_i)^2 + \lambda\lVert w \rVert ^2
 \\]
-where the first term (the 'L2' term) measures how close $$f(x)$$ is close to $$y$$, while the second term (the 'regularization' term) accounts for the 'complexity' of the learned function $$f$$.
+where the first term (the 'L2' term) measures how close $$f(x)$$ is to $$y$$, while the second term (the 'regularization' term) accounts for the 'complexity' of the learned function $$f$$.
 
 Suppose we wanted to extend $$L$$ to beyond linear functions $$f$$. We want to minimize something like:
 \\[
@@ -105,7 +105,7 @@ Try to derive what the associated feature map is, for each of these kernels!
 &nbsp;
 
 We can now define a reproducing kernel Hilbert space or a 'RKHS'.  
-A *reproducing kernel Hilbert space*, obtained on fixing a kernel $$K$$, is a space of functions where every function $$f$$ is some linear combination of the kernel $$K$$ evaluated at some 'centers' $$x_C$$:
+A *reproducing kernel Hilbert space*, obtained on fixing a kernel $$K$$, is a space of functions where every function $$f$$ is some linear combination of the kernel $$K$$ evaluated at some 'centers' $$x_{Cf}$$:
 \\[
     f(x) = \sum_{i = 1}^n \alpha_{f_i} K(x, x_{Cf_i}) 
 \\]

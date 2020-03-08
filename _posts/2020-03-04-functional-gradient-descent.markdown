@@ -9,9 +9,9 @@ The content in this post has been adapted from [Functional Gradient Descent - Pa
 Functional Gradient Descent was introduced in the NIPS publication [Boosting Algorithms as Gradient Descent](https://papers.nips.cc/paper/1766-boosting-algorithms-as-gradient-descent.pdf) by Llew Mason, Jonathan Baxter, Peter Bartlett and Marcus Frean in the year 2000.
 
 We are all familiar with gradient descent for linear functions $$f(x) = w^Tx$$.  
-Once we define a loss $$L$$, gradient descent does the following update steps ($$\alpha$$ is a parameter called the learning rate.):
+Once we define a loss $$L$$, gradient descent does the following update steps ($$\eta$$ is a parameter called the learning rate.):
 \\[
-    w \rightarrow w - \alpha \nabla L(w)
+    w \rightarrow w - \eta \nabla L(w)
 \\]
 where we move around in the space of weights.
 An example of a loss $$L$$ is:
@@ -26,7 +26,7 @@ Suppose we wanted to extend $$L$$ to beyond linear functions $$f$$. We want to m
 \\]
 where $$\lVert f \rVert ^2$$ again serves as a regularization term, and we have updates of the form:
 \\[
-    f \rightarrow f - \alpha \nabla L(f)
+    f \rightarrow f - \eta \nabla L(f)
 \\]
 where we move around in the space of functions, not weights!
 
@@ -206,10 +206,10 @@ Thus, each of these terms has derivative:
                      &= -2 (y_i - f(x_i)) \cdot K(x_i, \cdot).
     \end{aligned}
 \\]
-The second term has derivative $$2f$$, as derived above.
+The second term has derivative $$2\lambda f$$, as derived above.
 Thus, the derivative $$DL(f)$$ is given by:
 \\[
-    DL(f) = \sum_{i = 1}^n -2 (y_i - f(x_i)) \cdot K(x_i, \cdot) + 2f.
+    DL(f) = \sum_{i = 1}^n -2 (y_i - f(x_i)) \cdot K(x_i, \cdot) + 2\lambda f.
 \\]
 
 ---
@@ -262,10 +262,50 @@ This means, we can write:
 \\]
 where $$DE(f) \in H_K$$, which is what we had to show!
 
+### An Example
+Consider the regression problem, where $$x_i,$$ for $$i \in {1, \ldots, 20}$$ are linearly spaced in $$[-1, 1]$$:
+\\[
+    y_i = e^{-\left(\frac{x_i - 0.5}{0.5}\right)^2} + e^{-\left(\frac{x_i + 0.5}{0.5}\right)^2} + \frac{\mathcal{N}(0, 1)}{20}
+\\]
+
+Although this is a simple enough problem that would be easily solved by 'ordinary' gradient descent, we will demonstrate how functional gradient descent works here. 
+
+First, we need a loss function. We will use the L2 loss with regularization, $$L(f)$$, defined above. We have already seen in Example 3, that the gradient of $$L(f)$$ is:
+\\[
+    DL(f) = \sum_{i = 1}^n -2 (y_i - f(x_i)) \cdot K(x_i, \cdot) + 2\lambda f.
+\\]
+Let us define $$K$$ as the RBF kernel of degree $$2$$ with width $$0.5$$. The presence of the Gaussian noise term above means the true hypothesis is not in $$H_K$$, but we should get close!
+
+We initialize $$\alpha_{f_0}$$ randomly, and set:
+\\[ 
+    f_0 = \sum_{i = 1}^{20} \alpha_{f_0i} K(\cdot, x_i) 
+\\]
+and then start updating:
+\\[
+    f_{t + 1} = f_t - \eta \cdot DL(f_t)
+\\]
+
+This makes sense! But if we want to represent this in code, we would have to represent these functions in some way. One way is to maintain the coefficients $$\alpha_{f_t}$$ and kernel centers $$x_{C{f_t}}$$ at every iteration. We can simplify this by deciding to store only $$\alpha_{f_t}$$ (allowing zeros) and implicitly use all $$x_i$$ as the kernel centers. This is actually the same as doing gradient descent on $$\alpha_f$$! Other ways would be to add training samples one-by-one in an online manner, maintaining/recomputing the function values only at the training points. However, this causes a complication wherein the function is only defined at the training samples. To fix this, instead of updating by the gradient, we update using smooth functions that approximate the gradient: this is exactly gradient boosting!
+
+So, our updates are now:
+\\[
+    \alpha_{f_{t + 1}} = 2 \eta (y - f_t(x)) +  (1 - 2\lambda\eta) \alpha_{f_t}
+\\]
+where $$y - f_t(x)$$ is a vector with $$(y - f_t(x))_i = y_i - f_t(x_i)$$.
+Check this!
+
+If we implement all this, and plot the resulting learned hypothesis at each step of gradient descent:
+
+{: style="text-align:center"}
+![Functional Gradient Descent Example](/assets/images/functional_gradient_descent.gif "Functional Gradient Descent Example")
+
+indicating that functional gradient descent converges pretty fast, for our example.
+The code for this example is available [here](https://github.com/simple-complexities/simple-complexities.github.io/tree/master/code/functional_gradient_descent.py).
+
 ### Conclusion
 We have seen:
 * Why functional gradient descent can be useful,
 * What it means to do functional gradient descent, and, 
-* How we can do functional gradient descent.  
+* How we can do functional gradient descent, with an example.  
 
 and that's all I have for today.

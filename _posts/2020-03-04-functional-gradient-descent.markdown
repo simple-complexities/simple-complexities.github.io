@@ -287,7 +287,7 @@ and then start updating:
 
 This makes sense! But if we want to represent this in code, we would have to represent these functions in some way. One way is to maintain the coefficients $$\alpha_{f_t}$$ and kernel centers $$x_{C{f_t}}$$ at every iteration. We can simplify this by deciding to store only $$\alpha_{f_t}$$ (allowing zeros) and implicitly use all $$x_i$$ as the kernel centers. This is actually the same as doing gradient descent on $$\alpha_f$$! Other ways would be to add training samples one-by-one in an online manner, maintaining/recomputing the function values only at the training points. However, this causes a complication wherein the function is only defined at the training samples. To fix this, instead of updating by the gradient, we update using smooth functions that approximate the gradient: this is exactly gradient boosting!
 
-So, our updates are now:
+If we decide to represent our function implicitly by $$\alpha_f$$ at each step, our updates are now:
 \\[
     \alpha_{f_{t + 1}} = 2 \eta (y - f_t(x)) +  (1 - 2\lambda\eta) \alpha_{f_t}
 \\]

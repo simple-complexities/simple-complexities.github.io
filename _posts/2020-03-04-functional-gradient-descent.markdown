@@ -274,7 +274,7 @@ First, we need a loss function. We will use the L2 loss with regularization, $$L
 \\[
     DL(f) = \sum_{i = 1}^n -2 (y_i - f(x_i)) \cdot K(x_i, \cdot) + 2\lambda f.
 \\]
-Let us define $$K$$ as the RBF kernel of degree $$2$$ with width $$0.5$$. The presence of the Gaussian noise term above means the true hypothesis is not in $$H_K$$, but we should get close!
+Let us define $$K$$ as the RBF kernel with width $$0.5$$. The presence of the Gaussian noise term above means the true hypothesis is not in $$H_K$$, but we should get close!
 
 We initialize $$\alpha_{f_0}$$ randomly, and set:
 \\[ 

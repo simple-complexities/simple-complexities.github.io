@@ -139,18 +139,18 @@ I'm not going to be proving the conditions here, but they aren't too hard to sho
 #### First-Order Necessary Conditions (FONC)
 If a point $$x^*$$ is a local minimizer of $$f$$, then:
 \\[
-    Df(x^\*) = 0^T
+    Df(x^\*) = 0^T.
 \\]
 Transposing, this is the same as saying:
 \\[
-    \nabla f(x^\*) = 0
+    \nabla f(x^\*) = 0.
 \\]
 
 #### Second-Order Necessary Conditions (SONC)
 If a point $$x^*$$ is a local minimizer of $$f$$, then:
 \\[
     \begin{aligned}
-        Df(x^\*) &= 0^T \newline
+        Df(x^\*) &= 0^T, \newline
         Hf(x^\*) &\text{ is positive semi-definite.} \newline
     \end{aligned}
 \\]
@@ -159,7 +159,7 @@ If a point $$x^*$$ is a local minimizer of $$f$$, then:
 If a point $$x^*$$ is such that:
 \\[
     \begin{aligned}
-        Df(x^\*) &= 0^T \newline
+        Df(x^\*) &= 0^T, \newline
         Hf(x^\*) &\text{ is positive definite.} \newline
     \end{aligned}
 \\]
@@ -178,12 +178,12 @@ Regularity plays an important role!
 
 If $$x^*$$ is a local minimizer of $$f$$, $$x^*$$ being a regular point, then there exists $$\lambda^*$$ such that:
 \\[
-    Df(x^\*) + {\lambda^*}^T Dh(x^\*) = 0^T   
+    Df(x^\*) + {\lambda^*}^T Dh(x^\*) = 0^T.   
 \\]
 
 Taking transposes, this is saying that $${Df(x^*)}^T$$ is in the normal space! (With respect to $$Feas$$, of course.)
 \\[
-    {Df(x^\*)}^T + {Dh(x^\*)}^T{\lambda^\*} = 0
+    {Df(x^\*)}^T + {Dh(x^\*)}^T{\lambda^\*} = 0.
 \\]
 
 The $$\lambda^*$$ are called the Lagrange Mutlipliers.

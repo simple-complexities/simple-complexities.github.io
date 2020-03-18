@@ -71,15 +71,14 @@ def create_animation(x_train, y_train, x_full, y_full, predictive_means, predict
         return curr_full, curr_train, title,
 
     ani = FuncAnimation(fig, animate, len(x_train), interval=150, blit=False, repeat=False)
-    # plt.show()
-    ani.save('gaussian_process_regression.gif', writer='imagemagick', fps=10)
+    ani.save('gaussian_process_regression.gif', writer='imagemagick', fps=15)
 
 
 if __name__ == "__main__":
     
     # Constants.
     num_samples = 100        # Number of points totally.
-    error_variance = 1/2000  # Error.
+    error_variance = 1/2000  # Variance of error.
     seed = 0                 # Random seed.
 
     # Seed for reproducibility.

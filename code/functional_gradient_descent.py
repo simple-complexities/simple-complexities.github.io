@@ -33,6 +33,7 @@ def evaluate(alpha, kernel_matrix):
     return np.matmul(kernel_matrix, alpha)
 
 
+# Creates the animation.
 def create_animation(x, y, fxs):
     
     fig = plt.figure()

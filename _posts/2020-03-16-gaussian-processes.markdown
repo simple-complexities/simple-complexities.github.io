@@ -5,7 +5,7 @@ date:   2020-03-16 10:00:00 +0530
 categories: optimization gaussian processes bayesian
 ---
 
-Today, we're going to look at Gaussian processes. A lot of the reference material ([CS229](http://cs229.stanford.edu/section/cs229-gaussian_processes.pdf)) is really good, so we're not going to redo all of the work that they've done. Instead, the idea is to look deeper at some of the results derived there.
+Today, we're going to look at Gaussian processes. A lot of the reference material ([CS229: Gaussian Processes](http://cs229.stanford.edu/section/cs229-gaussian_processes.pdf)) is really good, so we're not going to redo all of the work that they've done. Instead, the idea is to look deeper at some of the results derived there.
 
 ### Review: Random Variables
 A random variable $$X$$ on $$\Omega$$ (called the sample space) is a function $$\Omega \to \mathbb{R}$$. We define the cumulative distribution $$F_X: \mathbb{R} \to [0, 1]$$ of $$X$$ as:

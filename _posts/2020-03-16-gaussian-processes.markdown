@@ -8,7 +8,7 @@ categories: optimization gaussian processes bayesian
 Today, we're going to look at Gaussian processes. A lot of the reference material ([CS229](http://cs229.stanford.edu/section/cs229-gaussian_processes.pdf)) is really good, so we're not going to redo all of the work that they've done. Instead, the idea is to look deeper at some of the results derived there.
 
 ### Review: Random Variables
-A random variable $$X$$ on $$\Omega$$ (called the sample space) is a function $$\Omega \to \mathbb{R}$$. We define the cumulative distribution $$F_X: \mathbb{R} \to \mathbb{R}$$ of $$X$$ as:
+A random variable $$X$$ on $$\Omega$$ (called the sample space) is a function $$\Omega \to \mathbb{R}$$. We define the cumulative distribution $$F_X: \mathbb{R} \to [0, 1]$$ of $$X$$ as:
 \\[
     F_X(x) = P(X \leq x) = P(w \in \Omega \mid X(w) \leq x)
 \\]
@@ -23,7 +23,7 @@ then, we say that $$X$$ is normally distributed with mean $$\mu$$ and variance $
 
 Note that a random variable is completely deterministic: once we fix $$w \in \Omega$$, $$X(w)$$ is completely determined. Where does randomness come from then? The answer is in our choice of $$w$$. Sampling from a random variable requires us to pick $$w$$ randomly from $$\Omega$$ and pass it through $$X$$. If the form of $$X$$ is known, the distribution of $$X$$ can shed light on how $$w$$ is picked, but generally, we care only about the values of $$X(w) = x$$ (which is what $$F_X$$ tells us about), and not $$w$$ itself.
 
-We can collect random variables to get a random vector $$X = [X_1 \ldots X_n]$$ which is now a function $$\Omega \to \mathbb{R^n}$$. The cumulative distribution function $$F_X$$ now maps tuples in $$\mathbb{R}^n$$ to probabilities in $$\mathbb{R}$$. We can extend the univariate normal distribution to get a multivariate normal distribution.
+We can collect random variables to get a random vector $$X = [X_1 \ldots X_n]$$ which is now a function $$\Omega \to \mathbb{R^n}$$. The cumulative distribution function $$F_X$$ now maps tuples in $$\mathbb{R}^n$$ to probabilities in $$[0, 1]$$. We can extend the univariate normal distribution to get a multivariate normal distribution.
 
 When we talk about a distribution over a set $$S$$, we are assigning probabilities to elements (samples from the distribution) in $$S$$. Each random variable induces a distribution over $$\mathbb{R}$$, while each random vector induces a distribution over $$\mathbb{R}^n$$: given by the respective cumulative distribution functions.
 

@@ -5,6 +5,7 @@ date:   2020-03-16 10:00:00 +0530
 categories: optimization gaussian processes bayesian
 ---
 
+**In progress! Check back again soon!**    
 Today, we're going to look at Gaussian processes. A lot of the reference material ([CS229: Gaussian Processes](http://cs229.stanford.edu/section/cs229-gaussian_processes.pdf)) is really good, so we're not going to redo all of the work that they've done. Instead, the idea is to look deeper at some of the results derived there.
 
 ### Review: Random Variables

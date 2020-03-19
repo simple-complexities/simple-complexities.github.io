@@ -53,7 +53,6 @@ def create_animation(x_train, y_train, x_full, y_full, predictive_means, predict
     ax.set_xlim((-1, 1))
     ax.set_ylim((0, 1.5))
     
-
     def animate(iteration):
         curr_means = predictive_means[iteration][sorted_indices_full]
         curr_vars = predictive_vars[iteration][sorted_indices_full]

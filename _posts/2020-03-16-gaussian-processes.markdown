@@ -23,7 +23,7 @@ then, we say that $$X$$ is normally distributed with mean $$\mu$$ and variance $
 
 Note that a random variable is completely deterministic: once we fix $$w \in \Omega$$, $$X(w)$$ is completely determined. Where does randomness come from then? The answer is in our choice of $$w$$. Sampling from a random variable requires us to pick $$w$$ randomly from $$\Omega$$ and pass it through $$X$$. If the form of $$X$$ is known, the distribution of $$X$$ can shed light on how $$w$$ is picked, but generally, we care only about the values of $$X(w) = x$$ (which is what $$F_X$$ tells us about), and not $$w$$ itself.
 
-We can collect random variables to get a random vector $$X = [X_1 \ldots X_n]$$ which is now a function $$\Omega \to \mathbb{R^n}$$. The cumulative distribution function $$F_X$$ now maps tuples in $$\mathbb{R}^n$$ to probabilities in $$[0, 1]$$. We can extend the univariate normal distribution to get a multivariate normal distribution.
+We can collect random variables to get a random vector $$X = [X_1 \ldots X_n]$$ which is now a function $$\Omega \to \mathbb{R^n}$$. The cumulative distribution function $$F_X$$ now maps tuples in $$\mathbb{R}^n$$ to probabilities in $$[0, 1]$$. We can extend the univariate normal distribution to get a multivariate normal distribution, now parametrized by a mean vector $$\mu$$ and a covariance matrix $$\Sigma$$.
 
 When we talk about a distribution over a set $$S$$, we are assigning probabilities to elements (samples from the distribution) in $$S$$. Each random variable induces a distribution over $$\mathbb{R}$$, while each random vector induces a distribution over $$\mathbb{R}^n$$: given by the respective cumulative distribution functions.
 

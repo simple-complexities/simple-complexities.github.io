@@ -23,3 +23,5 @@ Note that the elements of $$GF(p)[x]/{\langle f(x) \rangle}$$  are in fact, sets
 We also need no zero divisors in this construction. This follows exactly because $$f$$ is irreducible!
 
 The choice of $$f$$ actually gives us a basis to represent $$GF(p^n)$$ - look at the coefficients $$c_i$$ above. As we know, changing the basis only changes the way we view elements, not the actual elements themselves.
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/6)!

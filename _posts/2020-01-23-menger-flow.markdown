@@ -28,3 +28,5 @@ As the capacities are all integers, we know that an optimal flow exists with onl
 By the contrapositive of the second lemma, the capacity of the minimum cut in $$G_F$$ is $$\geq$$ the size of the minimum set of edges to disconnect $$s$$ and $$t$$, which is $$\geq$$ the maximum number of edge-disjoint paths from $$s$$ to $$t$$ (by our very first observation) $$ = $$ maximum $$0-1$$ flow in the graph $$G_F$$. 
 
 But now, Max-Flow Min-Cut says that we must have equality everywhere! This proves the theorem.
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/8)!

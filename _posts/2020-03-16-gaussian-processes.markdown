@@ -67,3 +67,5 @@ If we implement all this, and plot the resulting predictive mean with one-sigma 
 In the example below, I'm actually plotting the predictive distribution over all samples, not just the test set. Note that even at the training samples, the variance is non-zero: capturing the error in $$\epsilon$$. More interestingly, initially, there are no training set samples on the right hand side. This leads to a large variance on that subset of the domain, indicated by the wide band of unconfidence. However, as samples from the right hand side enter our training set, the model becomes more confident.
 
 The code for this example is available [here](https://github.com/simple-complexities/simple-complexities.github.io/tree/master/code/gaussian_process_regression.py).
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/2)!

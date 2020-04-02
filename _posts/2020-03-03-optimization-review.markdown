@@ -17,7 +17,7 @@ We're dealing with non-linear constrained optimization problems, with both equal
     \text{such that } h(x) &= 0, \newline
     \text{and } g(x) &\leq 0.
     \end\{aligned\}
-\\]
+\\] 
 The feasible set $$Feas$$ is the set of all feasible points:
 \\[
     Feas = \\{x \mid h(x) = 0, g(x) \leq 0 \\}

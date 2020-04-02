@@ -309,3 +309,5 @@ We have seen:
 * How we can do functional gradient descent, with an example.  
 
 and that's all I have for today.
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/3)!

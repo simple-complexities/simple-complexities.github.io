@@ -46,3 +46,5 @@ The theorem on finite fields follows now from the following facts:
 Why? Note that as $$(F, +, \times)$$ is a field, $$(F, +)$$ is an abelian group by the field axioms. If a prime $$q \neq p$$ divided the order of $$(F, +)$$, by Cauchy's Theorem, there must be an element in $$(F, +)$$ that had order $$q$$, a contradiction to the second fact above.
 
 Thus, $$\lvert F\rvert = \lvert (F, +)\rvert = p^n$$ for some $$n$$!
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/7)!

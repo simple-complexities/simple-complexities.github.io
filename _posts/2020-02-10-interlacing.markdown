@@ -59,3 +59,5 @@ for all $$U$$.
 Thus,
 \\[ \mu_i  \geq \max_{\substack{U \leq \mathbb{R}^n \\ \dim U = i + 1}}\min_{y \in U} y^TAy = \lambda_{i + 1}. \\]
 and we're done!
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/4)!

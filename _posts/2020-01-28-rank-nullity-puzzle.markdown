@@ -35,3 +35,5 @@ The determinant of a matrix is the product of its eigenvalues, so $$\det(B') = (
 
 
 Then, $$B$$ has rank $$2n$$ as it is full-rank. On adding the deleted row and deleted column back to get $$A$$, the rank is unaffected. (In general, the rank of a matrix is $$\geq$$ the rank of any submatrix). Hence, the rank of $$A$$ is $$2n$$, and following above, all the weights are equal.
+
+I'm also starting to introduce a commenting facility via GitHub Issues, in order to not clutter up this space here. Comment [here](https://github.com/simple-complexities/simple-complexities.github.io/issues/5)!

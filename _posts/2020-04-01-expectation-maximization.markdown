@@ -125,7 +125,7 @@ It is important to note that EM is susceptible to local maxima of the log-likeli
 {: style="text-align:center"}
 ![Expectation-Maximization Example](/assets/images/expectation_maximization.gif "Expectation-Maximization Example")
 
-The colours for each sample indicate the responsibility of cluster $$0$$ in 'explaining' that sample.
+The colours for each sample indicate the responsibility of cluster 0 in 'explaining' that sample.
 If we plot the log-likelihoods after each iteration, we see that it is, indeed, non-decreasing:
 
 {: style="text-align:center"}

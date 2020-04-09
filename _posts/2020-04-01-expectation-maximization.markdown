@@ -6,7 +6,7 @@ categories: likelihood expectation maximization
 ---
 In this post, I reproduce many of the ideas (and some content) from the excellent textbook ['Pattern Recognition and Machine Learning'](http://users.isr.ist.utl.pt/~wurmd/Livros/school/Bishop%20-%20Pattern%20Recognition%20And%20Machine%20Learning%20-%20Springer%20%202006.pdf) by Christopher M. Bishop.
 
-## Maximum Likelihood Estimation
+## Maximum Likelihood Estimation (MLE)
 Given some some samples $$X$$ from a distribution, we want to find out parameters $$\theta$$ describing this distribution that maximize the likelihood of generating these samples, ie, $$p(X \mid \theta)$$. For very simple distributions (such as a single Gaussian), this can often be solved in closed-form: differentiation of the likelihood with respect to $$\theta$$ is enough.
 
 However, this will not work for more complicated distributions (such as mixtures of Gaussians). Instead of closed-form solutions, we turn to iterative algorithms that can converge to atleast local maxima of the likelihood. 
@@ -72,7 +72,7 @@ Why is this called the E-step? Let us define:
     Q(\theta, \theta^{\ old}) = \mathop{\mathbb{E}}\limits_{Z \sim p_{z, \theta^{\ old}}}[\ln{p(X, Z \mid \theta)}]
 \\]
 
-It is clear that once we have computed $$p_{z, \theta^{\ old}}$$, we can compute $$Q(\theta, \theta^{\ old})$$ for any $$\theta$$ supplied to us.
+It is clear that once we have computed $$p_{z, \theta^{\ old}}$$, we can compute $$Q(\theta, \theta^{\ old})$$ for any $$\theta$$ supplied to us, by computing the *expectation* of some complicated term.
 
 ## The M-step
 
@@ -89,7 +89,51 @@ Thus, maximizing $$L$$ subject to $$q$$ fixed to $$p_{z, \theta^{\ old}}$$, is t
 
 So, in the E-step, we compute $$Q$$ which an expected value of some quantity, and in the M-step, we maximize $$Q$$.
 
-I could have done an example of EM, but the reference above does this really well, taking the example of Gaussian Mixture Models. Take a look if you're interested. There is much to be said about the difficulty of implementing the E and M steps: for some models (such as Gaussian Mixture Models) both are relatively simple, but they can be complex. The reference has a great discussion about this, too.
+## EM for MAP Estimation
+EM can also be used for MAP (maximum a posteriori) estimation, the procedure is almost the same!
+In comparison with ML (maximum likelihood) estimation, MAP estimation chooses $$\theta$$ maximizing the posterior distribution of parameters conditional on the input:
+\\[
+    p(\theta \mid X) = \frac{p(X \mid \theta) \ p(\theta)}{\sum_\theta p(X \mid \theta) \ p(\theta)}
+\\]
+Note, that the denominator is independent of $$\theta$$. Hence, this is equivalent to maximization of:
+\\[
+    p(X \mid \theta) \ p(\theta),
+\\]
+which is the likelihood function multiplied by the prior distribution over parameters.
+Applying logs, we see that we have an additional additive term coming from the prior distribution:
+\\[
+    \ln{p(X \mid \theta)} + \ln{p(\theta)}
+\\]
+
+Thus, the E-step (when $$\theta$$ is fixed) is the same, because we have just added a constant (with respect to $$q$$)!
+The M-step is slightly different, we now have to maximize:
+\\[
+    Q(\theta, \theta^{\ old}) + \ln{p(\theta)}
+\\]
+
+## EM is not (completely) Bayesian!
+Why? A fully Bayesian technique would introduce distributions over the unknown parameters $$\theta$$. EM does compute a distribution over latent variables $$Z$$, but a gives us point estimate for $$\theta$$ (and not a full distribution, irrespective of whether we use ML or MAP estimation).
+This last point might be a little confusing: I have written down the expressions for the posterior distribution of $$\theta$$ in the section above! But, that distribution is often intractable. (Indeed, if it were tractable, so would the likelihood itself, which means we wouldn't have to do EM anyways.)
+
+However, once we specify a prior distribution over $$\theta$$, we can now integrate $$\theta$$ into the set of latent variables $$Z$$. This merges the E- and M-steps! We will expand on this when we look at variational inference, in a future post.
+
+## An Example
+The reference above discusses an example of EM for Gaussian Mixture Models really well. Take a look if you're interested. Here, I will use their results and implement the E- and M-steps.
+
+It is important to note that EM is susceptible to local maxima of the log-likelihood. Initializing by running k-means (which is actually a special case of EM!) first is a good idea.
+
+{: style="text-align:center"}
+![Expectation-Maximization Example](/assets/images/expectation_maximization.gif "Expectation-Maximization Example")
+
+The colours for each sample indicate the responsibility of cluster $$0$$ in 'explaining' that sample.
+If we plot the log-likelihoods after each iteration, we see that it is, indeed, non-decreasing:
+
+{: style="text-align:center"}
+![Expectation-Maximization Likelihoods Example](/assets/images/expectation_maximization_likelihoods.gif "Expectation-Maximization Likelihoods Example")
+
+I skip the initial log-likelihood in the plot above because it skews the plot, being very low.
+
+In general, there is much to be said about the difficulty of implementing the E and M steps: for some models (such as Gaussian Mixture Models) both are relatively simple, but they can be complex (and even intractable). The reference has a great discussion about this, too.
 
 The next post is to take this background and step into variational inference!
 

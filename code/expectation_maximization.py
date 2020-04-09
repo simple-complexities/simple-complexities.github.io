@@ -95,7 +95,7 @@ def compute_log_likelihood(samples, theta):
     return log_likelihood
 
 # Creates the animation.
-def create_animation(samples, responsibilities_record, mixing_coeffs_record, gaussian_means_record, gaussian_covars_record):
+def create_animation(samples, log_likelihood_record, responsibilities_record, mixing_coeffs_record, gaussian_means_record, gaussian_covars_record):
 
     # Create figure.
     fig = plt.figure()
@@ -141,6 +141,7 @@ def create_animation(samples, responsibilities_record, mixing_coeffs_record, gau
     ax.set_ylabel('y')
 
     # Update at each iteration.
+    num_iterations = responsibilities_record.shape[0]
     def animate(iteration):
         ax.clear()
 
@@ -156,14 +157,33 @@ def create_animation(samples, responsibilities_record, mixing_coeffs_record, gau
         # Update title.
         plt.title('Expectation Maximization \n Iteration %d' % iteration)
 
-    ani = FuncAnimation(fig, animate, responsibilities_record.shape[0], interval=100, blit=False, repeat=True)
+    ani = FuncAnimation(fig, animate, num_iterations, interval=100, blit=False, repeat=True)
     ani.save('expectation_maximization.gif', writer='imagemagick', fps=30)
+
+    # Update at each iteration.
+    def animate_likelihoods(iteration):
+        ax.clear()
+
+        if iteration > 0:
+            # Plot log-likelihoods.
+            past = 1
+            log_likelihood_range = log_likelihood_record[past: iteration + 1]
+            ax.plot(np.arange(past, iteration + 1), log_likelihood_range)
+            ax.set_ylim((np.min(log_likelihood_range) - 50, np.max(log_likelihood_range) + 50))
+            ax.set_xticks(np.arange(past, iteration + 1, 5))
+
+            # Update title.
+            plt.title('Expectation Maximization Log-Likelihood \n Iteration %d' % iteration)
+
+    ani = FuncAnimation(fig, animate_likelihoods, num_iterations, interval=100, blit=False, repeat=True)
+    ani.save('expectation_maximization_likelihoods.gif', writer='imagemagick', fps=30)
+    plt.show()
 
 
 if __name__ == "__main__":
     
     # Constants.
-    num_samples = 500       # Number of points totally.
+    num_samples = 500        # Number of points totally.
     num_clusters = 2         # Number of clusters (distributions in the mixture).
     num_iterations = 50      # Number of iterations of EM.
     seed = 0                 # Random seed.
@@ -225,6 +245,6 @@ if __name__ == "__main__":
         print()
 
     # Create an animation of the learning process.
-    create_animation(samples, responsibilities_record, mixing_coeffs_record, gaussian_means_record, gaussian_covars_record)
+    create_animation(samples, log_likelihood_record, responsibilities_record, mixing_coeffs_record, gaussian_means_record, gaussian_covars_record)
 
 

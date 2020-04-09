@@ -120,7 +120,7 @@ However, once we specify a prior distribution over $$\theta$$, we can now integr
 ## An Example
 The reference above discusses an example of EM for Gaussian Mixture Models really well. Take a look if you're interested. Here, I will use their results and implement the E- and M-steps.
 
-It is important to note that EM is susceptible to local maxima of the log-likelihood. Initializing by running k-means (which is actually a special case of EM!) first is a good idea.
+It is important to note that EM is susceptible to local maxima of the log-likelihood. Initializing by running k-means (which is actually a special case of EM!) first is a good idea. In the example below, I do not initialize the mixing coefficients and the means randomly, because I want to show how the estimates change:
 
 {: style="text-align:center"}
 ![Expectation-Maximization Example](/assets/images/expectation_maximization.gif "Expectation-Maximization Example")

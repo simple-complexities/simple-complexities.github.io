@@ -39,21 +39,24 @@ def create_animation(x, y, fxs):
     fig = plt.figure()
     ax = fig.add_axes([0.1, 0.1, 0.8, 0.8])
     
-    # Plot true hypothesis
+    # Plot true hypothesis.
     ax.plot(x, y, '-o', c='tab:blue', label='True Hypothesis')
     ax.set_ylim(np.min(y) - 1, np.max(y) + 1)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     curr_fx, = ax.plot(x, fxs[0], '-', c='tab:red', label='Learned Hypothesis')
+    ax.legend(loc='lower center')
+
+    # Title.
     title_text = 'Functional Gradient Descent \n Iteration %d'
     title = plt.text(0.5, 0.85, title_text, horizontalalignment='center', verticalalignment='center', transform=fig.transFigure, fontsize=14)
-    ax.legend(loc='lower center')
 
     # Init only required for blitting to give a clean slate.
     def init():
         curr_fx.set_ydata(np.ma.array(x, mask=True))
         return curr_fx, title,
 
+    # Update at each iteration.
     def animate(iteration):
         curr_fx.set_ydata(fxs[iteration])
         title.set_text(title_text % iteration)

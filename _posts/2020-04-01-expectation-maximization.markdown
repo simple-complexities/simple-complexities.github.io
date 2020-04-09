@@ -14,7 +14,12 @@ However, this will not work for more complicated distributions (such as mixtures
 An example of an iterative approach which provably increases (rather, does not decrease) the likelihood at each step is Expectation-Maximization.
 
 ## Expectation-Maximization (EM)
-EM splits the log-likelihood (equivalent for maximization) into two terms, explicitly listing latent variables $$Z$$.
+EM splits the log-likelihood (equivalent to the likelihood for maximization) into two terms, explicitly listing latent variables $$Z$$. Latent variables are not observed, but if we had values for them, maximization of the log-likelihood is much simpler. In the case of mixture models, the latent variables for each sample $$x \in X$$ would be the one-hot vector indicating which distribution in the mixture this sample was generated from.
+
+The problem is that we don't know the distribution of latent variables. The way EM tackles this is to compute a distribution of latent variables from our current estimate of the parameters! In simplified terms, EM consists of two steps, repeated until convergence:
+* Compute distribution $$q$$ over latent variables, with our current estimate of parameters $$\theta$$.
+* Compute new estimates of $$\theta$$, using $$q$$.
+
 Start by specifying the joint distribution over both data $$X$$ and latent variables $$Z$$:
 \\[
     \begin{aligned}
